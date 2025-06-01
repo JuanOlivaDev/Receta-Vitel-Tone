@@ -3,29 +3,307 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="receta_vitel_toné.css" />
-    <title>Vitel Toné</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="vitel-tone.css" />
   </head>
-
   <body>
-    <!--Header Stiky. Kebab Menu, Download, Share, Ricepe Name, Fav, Print, Log in -->
-    <header>
-      <div clss="header-content">
-        <h1 id="recipe-name">
-          Vitel Toné <span class="recipe-user">por Juanita te la Cocina</span>
-        </h1>
-        <div class="header-buttons">
-          <button>kebab menu</button>
-          <button>compartir</button>
-          <button>descargar</button>
-          <button>favoritos</button>
-          <button>sign up</button>
-          <button>imprimir</button>
-        </div>
+    <header class="main-header">
+      <div class="header-left">
+        <button class="kebab-menu-btn">☰</button>
+        <button class="emoji-btn">❤️</button>
+        <button class="emoji-btn">⤵️</button>
+      </div>
+      <div class="header-center">
+        <h1 class="recipe-title">Vitel Toné</h1>
+        <a href="#" class="author-link">por @Juanita Cocina</a>
+      </div>
+      <div class="header-right">
+        <button class="emoji-btn">🖨️</button>
+        <button class="emoji-btn">⬇️</button>
+        <button class="signup-btn">Sign Up</button>
       </div>
     </header>
-    <aside class="box-ingredients">
-      <h3 class="title-ingredients"><ul</h3>
-    </aside>
+    <div class="page-container">
+      <div class="fixed-sidebar">
+        <div class="ingredients-section">
+          <div class="ingredients-header">
+            <h3>INGREDIENTES</h3>
+          </div>
+          <div class="box-ingredients">
+            <ul>
+              <li>1 peceto de 1,5 Kgs aprox</li>
+              <li>Verduras (apio, cebolla, cebolla de verdeo y puerro)</li>
+              <li>Sal gruesa</li>
+              <li>1 lata lomito de atún en aceite</li>
+              <li>2 o 3 anchoas (se pueden sacar)</li>
+              <li>1 cucharón de caldo de cocción (aprox)</li>
+              <li>1 cda mostza</li>
+              <li>1/2 taza mayonesa</li>
+              <li>Pimienta recien molida</li>
+              <li>100cc de crema de leche</li>
+              <li>1 cda alcaparras</li>
+            </ul>
+          </div>
+          <div class="nutritional-toggle-container">
+            <input
+              type="checkbox"
+              id="toggleNutritional"
+              class="toggle-checkbox"
+              hidden
+            />
+            <label for="toggleNutritional" class="toggle-button">
+              Información Nutricional
+            </label>
+
+            <div class="nutritional-info-wrapper">
+              <div class="nutritional-info">
+                <h2>Valores Aproximados generados por Gemini IA®</h2>
+                <p><b>Porción</b>: 100g</p>
+                <p class="disclaimer">
+                  ¡No apto para fines dietéticos precisos!
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nutriente</th>
+                      <th>Cant. x Porción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Calorías</td>
+                      <td>220 kcal</td>
+                    </tr>
+                    <tr>
+                      <td>Grasas totales</td>
+                      <td>15g</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;&nbsp;&nbsp;Grasas saturadas</td>
+                      <td>4g</td>
+                    </tr>
+                    <tr>
+                      <td>Colesterol</td>
+                      <td>60mg</td>
+                    </tr>
+                    <tr>
+                      <td>Sodio</td>
+                      <td>450mg</td>
+                    </tr>
+                    <tr>
+                      <td>Carbohidratos totales</td>
+                      <td>3g</td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;&nbsp;&nbsp;Azúcares</td>
+                      <td>1g</td>
+                    </tr>
+                    <tr>
+                      <td>Proteínas</td>
+                      <td>18g</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="imagen-y-contenido-principal">
+          <div class="imagen-con-superposiciones">
+            <img src="/viteltone.jpg" alt="Vitel Toné" />
+
+            <div class="superposicion superposicion-top-right">
+              <button class="btn-mas-fotos">+</button>
+            </div>
+            <div class="superposicion superposicion-bottom-left">
+              <span class="likes-count">❤️ 1.2K</span>
+            </div>
+            <div class="superposicion superposicion-bottom-right">
+              <span class="recipe-time">⏰ 120 mins</span>
+            </div>
+
+            <div class="comentario-usuario">
+              <img
+                src="user-profile.jpg"
+                alt="Avatar de usuario"
+                class="user-avatar"
+              />
+              <div class="user-info">
+                <span class="username">Juanita Cocina</span>
+                <p class="user-comment">
+                  ¡Esta receta de Vitel Toné es un clásico! Simple y deliciosa,
+                  perfecta para compartir.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-y-comentarios-wrapper">
+            <div class="info-autogenerada">
+              <h3>Origen de la Receta - Gemini IA</h3>
+              <p>
+                El Vitel Toné es un plato tradicional de la gastronomía
+                italiana, especialmente de la región de Piamonte, aunque se
+                popularizó en Argentina y Uruguay como un clásico de las fiestas
+                de fin de año. Su nombre, "Vitello Tonnato", significa
+                literalmente "ternera atunada", refiriéndose a la combinación de
+                carne de ternera con una salsa a base de atún, anchoas y
+                mayonesa. Es un plato frío, ideal para el verano austral.
+              </p>
+            </div>
+
+            <div class="comentarios-scroll-box">
+              <h4>Comentarios de Usuarios</h4>
+              <div class="comentario-ejemplo">
+                <img src="user1.jpg" alt="User 1" class="comment-avatar" />
+                <p>
+                  **CocinaFeliz:** ¡Me encanta esta versión! La salsa es
+                  perfecta.
+                </p>
+              </div>
+              <div class="comentario-ejemplo">
+                <img src="user2.jpg" alt="User 2" class="comment-avatar" />
+                <p>
+                  **GourmetArg:** Un clásico que nunca falla. ¿Alguien le agrega
+                  algo más a la salsa?
+                </p>
+              </div>
+              <div class="comentario-ejemplo">
+                <img src="user3.jpg" alt="User 3" class="comment-avatar" />
+                <p>
+                  **RecetasFaciles:** Gracias por compartir, ¡salió
+                  espectacular!
+                </p>
+              </div>
+              <div class="comentario-ejemplo">
+                <img src="user4.jpg" alt="User 4" class="comment-avatar" />
+                <p>
+                  **MiCocina:** Siempre lo hago para Navidad, es un éxito
+                  asegurado.
+                </p>
+              </div>
+              <div class="comentario-ejemplo">
+                <img src="user5.jpg" alt="User 5" class="comment-avatar" />
+                <p>
+                  **AmanteDeLasPastas:** ¿Se puede hacer con otra carne?
+                  Curiosidad.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pasos">
+          <div class="titulo-paso-a-paso">
+            <h2>Paso a Paso</h2>
+          </div>
+          <div class="pasos-iconos-p-img">
+            <div class="paso-individual">
+              <div class="icono-pasos">
+                <p>1️</p>
+              </div>
+              <div class="p-img">
+                <div class="p-pasos">
+                  <ol>
+                    <li>
+                      Sellar el peceto haciéndolo girar en una olla caliente
+                      para que queden todos sus lados sellados.
+                    </li>
+                    <li>Cubrirlo con agua junto a las verduras y salar.</li>
+                    <li>
+                      Dejar hervir a fuego medio-bajo, con la olla semi tapada
+                      por 2 horas aproximadamente.
+                    </li>
+                    <li>
+                      Dejar pasar el calor intenso y pasar a un recipiente junto
+                      con el caldo (debe quedar semi cubierto).
+                    </li>
+                    <li>
+                      Llevar a la heladera. Lo ideal es hacerlo por 24 horas.
+                    </li>
+                  </ol>
+                </div>
+                <div class="img-pasos">
+                  <img src="/pecetocrudo.jpg" />
+                  <img src="/pecetosellado.jpg" />
+                  <img src="/pecetohirviendoconverduras.jpg" />
+                </div>
+              </div>
+            </div>
+            <div class="paso-individual">
+              <div class="icono-pasos">
+                <p>2️</p>
+              </div>
+              <div class="p-img">
+                <div class="p-pasos">
+                  <ol>
+                    <li value="6">
+                      Cuando la carne está bien fría cortar en rodajas finas y
+                      acomodar en una fuente de forma escalonada.
+                    </li>
+                    <li>
+                      Para la salsa: poner todos los ingredientes (caldo, sal,
+                      anchoas atún) menos la crema y las alcaparras en el vaso y
+                      mixear.
+                    </li>
+                  </ol>
+                </div>
+                <div class="img-pasos">
+                  <img src="/pecetohervido.jpg" />
+                  <img src="/filetpeceto.jpg" />
+                  <img src="/mixer.jpg" />
+                </div>
+              </div>
+            </div>
+            <div class="paso-individual">
+              <div class="icono-pasos">
+                <p>3️</p>
+              </div>
+              <div class="p-img">
+                <div class="p-pasos">
+                  <ol>
+                    <li value="8">
+                      Mezclar el resultado mixeado con la crema de leche y
+                      alcaparras.
+                    </li>
+                    <li>Rectificar sal y pimienta.</li>
+                    <li>
+                      Ajustar la textura agregando caldo en caso de que uno
+                      prefiera la salsa más líquida.
+                    </li>
+                    <li>Volcar sobre la carne.</li>
+                  </ol>
+                </div>
+                <div class="img-pasos">
+                  <img src="/pecetoconsalsa.jpg" />
+                </div>
+              </div>
+            </div>
+            <div class="paso-individual">
+              <div class="icono-pasos">
+                <p>4️</p>
+              </div>
+              <div class="p-img">
+                <div class="p-pasos">
+                  <ol>
+                    <li value="12">
+                      Terminar de decorar con alcaparras (como se muestra en la
+                      imagen).
+                    </li>
+                    <li>Reservar en la heladera hasta el momento de servir.</li>
+                  </ol>
+                </div>
+                <div class="img-pasos">
+                  <img src="/viteltonédecorado.jpg" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

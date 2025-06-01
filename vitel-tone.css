@@ -1,0 +1,682 @@
+/* --- Estilos Generales de la Página --- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0e1df;
+  color: #333;
+}
+
+/* --- Header Principal de la Página (Sticky) --- */
+.main-header {
+  position: sticky; /* Hace que el header se pegue al scroll */
+  top: 0; /* Se pegará en la parte superior de la ventana */
+  width: 100%; /* Ocupa todo el ancho */
+  background-color: #e0867e; /* Un fondo claro */
+  padding: 10px 20px; /* Espaciado interno */
+  box-shadow: 0 4px 8px #c0726b; /* Sombra sutil */
+  display: flex; /* Habilita Flexbox para los hijos */
+  justify-content: space-between; /* Distribuye el espacio entre los 3 bloques */
+  align-items: center; /* Centra verticalmente los elementos */
+  z-index: 1000; /* Asegura que esté por encima de todo lo demás al hacer scroll */
+  box-sizing: border-box; /* Incluye padding en el width */
+}
+
+/* --- Secciones del Header (Izquierda, Centro, Derecha) --- */
+.header-left,
+.header-right {
+  display: flex; /* Flex para los botones/emojis */
+  align-items: center;
+  gap: 30px; /* Espacio entre los botones */
+  flex-basis: 20%; /* Dan una base para que ocupen espacio y luego flex-grow los expande */
+  /* Puedes ajustar flex-basis para controlar cuánto espacio ocupan los laterales */
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column; /* Apila el título y el autor */
+  align-items: center; /* Centra el texto */
+  flex-grow: 1; /* Permite que el centro ocupe el espacio restante */
+  text-align: center;
+  font-size: 22px;
+}
+
+/* --- Estilos para el Título de la Receta --- */
+.recipe-title {
+  margin: 0; /* Elimina márgenes predeterminados */
+  font-size: 1.8em; /* Tamaño del título */
+  color: #000000;
+  white-space: nowrap; /* Evita que el título se rompa en varias líneas */
+  overflow: hidden; /* Oculta si el título es demasiado largo */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si se oculta */
+}
+
+/* --- Estilos para el Link del Autor --- */
+.author-link {
+  font-size: 0.7em; /* ¡MUCHO más pequeño! */
+  color: #572b2b;
+  text-decoration: none; /* Sin subrayado */
+  margin-top: 2px; /* Pequeño espacio sobre el título */
+}
+
+.author-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Estilos para Botones del Header --- */
+.kebab-menu-btn,
+.signup-btn,
+.emoji-btn {
+  background-color: transparent; /* ¡CAMBIO CLAVE! Fondo transparente por defecto */
+  border: none;
+  padding: 0; /* ¡CAMBIO CLAVE! Elimina el padding interno */
+  border-radius: 5px; /* Mantiene un borde redondeado, aunque no se vea sin fondo */
+  cursor: pointer;
+  font-size: 1.6em; /* Tamaño de fuente para los botones */
+  color: #000000; /* El color del texto del botón */
+  white-space: nowrap; /* Evita que el texto del botón se rompa */
+  /* Añadimos una transición para que el cambio de color de fondo sea suave */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* --- Efecto HOVER para los Botones --- */
+.kebab-menu-btn:hover,
+.signup-btn:hover,
+.emoji-btn:hover {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.05
+  ); /* ¡CAMBIO CLAVE! Color muy suave al pasar el cursor */
+  /* Puedes ajustar el valor alpha (0.05) para hacerlo más o menos visible.
+     rgba(0,0,0,0.05) es un gris muy claro y casi transparente. */
+}
+
+.signup-btn {
+  background-color: #9c5858; /* Un color de acento para el botón de registro */
+  color: rgb(224, 202, 202);
+  padding: 5px 25px; /* Un poco más de padding */
+}
+
+.signup-btn:hover {
+  background-color: #583131;
+}
+
+/* --- Ajuste del padding-top del page-container --- */
+/* PARA EVITAR QUE EL CONTENIDO QUEDE OCULTO BAJO EL HEADER STICKY */
+.page-container {
+  /* Tu padding actual es 20px. Necesitamos añadir la altura del header. */
+  /* Asumiremos que el header tiene unos 60px de alto (10px padding top + contenido + 10px padding bottom) */
+  /* Medir la altura de tu header para un ajuste preciso */
+  padding-top: 80px; /* Ejemplo: Ajusta este valor (altura del header + tu padding original) */
+  /* ... resto de tus estilos de .page-container ... */
+  display: flex;
+  min-height: 150vh;
+  /* padding: 20px; <-- Esto será sobrescrito por el padding-top */
+  box-sizing: border-box;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Barra Lateral Fija (Sticky Sidebar) --- */
+.fixed-sidebar {
+  width: 196px; /* Ancho fijo de la barra lateral (30% menos) */
+  align-self: flex-start;
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  /* ¡LA CLAVE ESTÁ AQUÍ! Aumentar el z-index para que esté por encima del header. */
+  z-index: 1001; /* Mayor que el z-index del header (1000) */
+}
+/* Nuevo contenedor para la sección de ingredientes */
+.ingredients-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.ingredients-header {
+  background-color: #ffcdc8; /* Rojo Terracota más intenso (tu color actual) */
+  border: 1px solid #bb928f; /* Borde más claro (tu color actual) */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  color: #000000; /* Texto negro */
+  margin-bottom: 0;
+  font-size: 1em;
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.ingredients-header h3 {
+  margin: 5px;
+  padding: 5px;
+}
+
+/* --- Estilos Comunes para las Cajas (Ingredientes y Nutricional) --- */
+.box-ingredients,
+.nutritional-info {
+  background-color: #f1dfdc; /* Durazno/Salmón claro (tu color actual) */
+  border: 1px solid #6e4545; /* Borde gris (tu color actual) */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* --- Caja de Ingredientes (con Scroll y Estilos Personalizados) --- */
+.box-ingredients {
+  max-height: 300px; /* Altura máxima para que aparezca el scroll */
+  overflow-y: auto; /* Habilita el scroll vertical */
+  flex-shrink: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 8px 20px 4px rgba(121, 59, 59, 0.699);
+  /* --- Estilos para el Scrollbar de .box-ingredients --- */
+
+  /* Propiedades estándar (Firefox, y Chrome/Edge/Safari modernos) */
+  scrollbar-color: #cc746c #fdf8f5; /* thumb (ladrillo suave) track (blanco roto) */
+  scrollbar-width: thin; /* Para una barra de desplazamiento más delgada */
+}
+
+/* Pseudo-elementos para WebKit (Chrome, Safari, Edge) */
+.box-ingredients::-webkit-scrollbar {
+  width: 10px; /* Ancho de la barra de scroll vertical */
+  height: 10px; /* Alto de la barra de scroll horizontal, si aplica */
+}
+
+.box-ingredients::-webkit-scrollbar-track {
+  background: #fdf8f5; /* Color de fondo del track (blanco roto) */
+  border-radius: 5px; /* Bordes redondeados para el track */
+}
+
+.box-ingredients::-webkit-scrollbar-thumb {
+  background-color: #cc746c; /* Color de la barra arrastrable (ladrillo suave) */
+  border-radius: 5px; /* Bordes redondeados para el thumb */
+  border: 2px solid #fdf8f5; /* Pequeño borde para separarlo del track, usa el color del track */
+}
+
+/* Estilo al pasar el cursor sobre la barra arrastrable */
+.box-ingredients::-webkit-scrollbar-thumb:hover {
+  background-color: #a65c54; /* Un tono un poco más oscuro al hacer hover */
+}
+
+/* REDUCCIÓN DEL TAMAÑO DE FUENTE para la lista de ingredientes */
+.box-ingredients ul {
+  padding: 0;
+  margin: 0;
+  font-size: 0.75em; /* Tamaño de fuente para la lista de ingredientes */
+}
+
+.box-ingredients li {
+  padding: 5px 0;
+  border-bottom: 1px dotted #854d4d;
+}
+
+.box-ingredients li:last-child {
+  border-bottom: none;
+}
+
+/* Nuevo contenedor para el botón de toggle y la info nutricional */
+.nutritional-toggle-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* --- Botón de Toggle (la etiqueta <label>) --- */
+.toggle-button {
+  background-color: #a73434;
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.7em;
+  width: 65%;
+  text-align: center;
+  box-sizing: border-box;
+  display: block;
+}
+
+.toggle-button:hover {
+  background-color: #b65e5e;
+}
+
+/* --- Contenedor de Información Nutricional (Desplegable con CSS-only) --- */
+.nutritional-info-wrapper {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.6s ease-out;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Regla para mostrar el contenido cuando el checkbox está marcado */
+#toggleNutritional:checked + .toggle-button + .nutritional-info-wrapper {
+  max-height: 600px;
+}
+
+/* --- Estilos para la Caja de la Tabla Nutricional --- */
+.nutritional-info {
+  padding-top: 15px;
+  border-top: none;
+  border-radius: 20px;
+  margin-top: -15px;
+  text-align: center;
+}
+
+/* Título de la información nutricional (h2) */
+.nutritional-info h2 {
+  color: #252323;
+  margin-bottom: 8px;
+  font-size: 0.7em;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Párrafo de la porción estimada */
+.nutritional-info p {
+  font-size: 0.75em;
+  color: #4d3838;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Texto de disclaimer */
+.nutritional-info .disclaimer {
+  font-size: 0.65em;
+  color: #880202;
+  margin-top: -3px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+/* --- Estilos para la Tabla Nutricional en sí --- */
+.nutritional-info table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 5px;
+  font-size: 0.7em; /* Tamaño de fuente para todo el texto de la tabla nutricional */
+  border: 1px double rgb(112, 46, 46);
+}
+
+.nutritional-info th,
+.nutritional-info td {
+  padding: 4px 6px;
+  text-align: left;
+  border: 1px solid black;
+}
+
+.nutritional-info th {
+  background-color: #c7a8a8;
+  font-weight: bold;
+  color: #1d1919;
+}
+
+/* Primera celda de cada fila (el nombre del nutriente) */
+.nutritional-info td:first-child {
+  font-weight: 500;
+  color: #222;
+}
+
+/* Filas impares para un efecto de "cebra" */
+.nutritional-info tbody tr:nth-child(odd) {
+  background-color: #eecaca;
+}
+
+/* Texto del valor diario al pie de la tabla */
+.nutritional-info .daily-value {
+  font-size: 0.65em;
+  color: #411818;
+  margin-top: 10px;
+  text-align: left;
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+}
+
+/* --- Contenido Principal de la Página --- */
+.main-content {
+  flex-grow: 1;
+  min-width: 0;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.main-content h1 {
+  color: #333;
+  margin-top: 0;
+}
+
+/* Contenedor que agrupa la imagen, el comentario de usuario y el wrapper de info/comentarios */
+/* Contenedor que agrupa la imagen, el comentario de usuario y el wrapper de info/comentarios */
+.imagen-y-contenido-principal {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Contenedor de la imagen y sus superposiciones */
+/* NOTA CRÍTICA: El `comentario-usuario` DEBE estar FUERA de este div 
+   si quieres que las superposiciones solo afecten a la imagen.
+   En tu HTML actual, `comentario-usuario` es HERMANO de `imagen-con-superposiciones`.
+   Si lo quieres justo debajo, déjalo así en el HTML, y solo esta parte de CSS controla la imagen.
+*/
+.imagen-con-superposiciones {
+  position: relative; /* Clave para posicionar las superposiciones DENTRO de este contenedor */
+  width: 65%; /* Ancho de la imagen */
+  max-width: 600px; /* Ancho máximo para la imagen */
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden; /* Asegura que las superposiciones se recorten a los bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* AÑADIDO: min-height para asegurar que tenga una altura base si la imagen no carga, o si necesitas un control más preciso */
+  min-height: 200px; /* Ajusta según el tamaño de tu imagen */
+}
+
+.imagen-con-superposiciones img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Estilos para las superposiciones (general) */
+.superposicion {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  z-index: 10; /* Asegura que estén SOBRE la imagen */
+}
+
+/* Posicionamiento específico para cada superposición */
+/* AJUSTE DE POSICIÓN: Mueve los iconos de corazón y reloj más arriba si es necesario */
+.superposicion-top-right {
+  top: 10px;
+  right: 10px;
+}
+
+.superposicion-bottom-left {
+  /* AJUSTE: Mueve ligeramente hacia arriba desde el fondo */
+  bottom: 60px; /* Estará por encima del comentario del usuario si este está debajo de la imagen */
+  left: 10px;
+}
+
+.superposicion-bottom-right {
+  /* AJUSTE: Mueve ligeramente hacia arriba desde el fondo */
+  bottom: 60px; /* Estará por encima del comentario del usuario si este está debajo de la imagen */
+  right: 10px;
+}
+
+/* --- Comentario de Usuario Debajo de la Imagen --- */
+/* IMPORTANTE: Este contenedor `.comentario-usuario` en tu HTML debe ser un HERMANO DIRECTO de `.imagen-con-superposiciones`
+   dentro de `.imagen-y-contenido-principal`, NO un hijo de `.imagen-con-superposiciones`.
+   Con tu HTML actual, ya está estructurado correctamente.
+*/
+
+.btn-mas-fotos {
+  background: none;
+  border: 1px solid white;
+  color: white;
+  font-size: 1.2em;
+  padding: 2px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1;
+}
+.btn-mas-fotos:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Comentario de Usuario Debajo de la Imagen --- */
+/* NOTA: En tu HTML, .comentario-usuario es hermano de <img /> y .superposicion.
+   Esto es un error. DEBE SER HIJO DIRECTO DE .imagen-con-superposiciones si quieres que los 
+   elementos superpuestos no lo cubran.
+   Si lo quieres debajo de la imagen, pero que las superposiciones NO lo tapen, 
+   entonces .comentario-usuario no debe ser position: absolute.
+   LO HE CAMBIADO PARA QUE ESTÉ FUERA DE .imagen-con-superposiciones en el HTML y sea su HERMANO DIRECTO */
+.comentario-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee; /* Borde completo */
+  border-radius: 8px; /* Bordes redondeados para toda la caja */
+  margin-top: 10px; /* Espacio debajo de la imagen */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  width: 100%; /* Ocupa el 100% del espacio disponible en su padre (imagen-y-contenido-principal) */
+  box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+
+.comentario-usuario .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comentario-usuario .user-info {
+  flex-grow: 1;
+}
+
+.comentario-usuario .username {
+  font-weight: bold;
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.comentario-usuario .user-comment {
+  font-size: 0.85em;
+  color: #555;
+  margin: 0;
+}
+
+/* --- Wrapper para Info IA y Comentarios (a la derecha de la imagen) --- */
+.info-y-comentarios-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+/* --- Texto Autogenerado por IA (flotando en background) --- */
+.info-autogenerada {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px; /* Ajuste el padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 150px; /* Altura mínima para que no sea tan pequeño */
+  max-height: none; /* Eliminar el max-height para que no haya scroll */
+  overflow-y: visible; /* Asegura que no haya scroll */
+  position: relative;
+}
+
+.info-autogenerada h3 {
+  margin-top: 0;
+  color: #444;
+  font-size: 0.9em; /* Ligeramente más grande que antes pero aún pequeño */
+  text-align: center;
+  margin-bottom: 8px;
+  font-style: italic; /* AÑADIDO: Fuente en cursiva */
+}
+
+.info-autogenerada p {
+  font-size: 0.8em; /* Tamaño de fuente ligeramente mayor que antes */
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+}
+
+/* --- Caja de Comentarios con Scroll --- */
+.comentarios-scroll-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  max-height: 125px; /* Mantiene la mitad de altura para el scroll */
+  overflow-y: auto;
+  /* align-self: flex-end; <-- ELIMINADO: Esta propiedad no es necesaria si quieres que simplemente esté debajo del `info-autogenerada` */
+  flex-basis: auto;
+  flex-grow: 1;
+}
+
+.comentarios-scroll-box h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #333;
+  text-align: center;
+  border-bottom: 1px dashed #eee;
+  padding-bottom: 5px;
+}
+
+.comentario-ejemplo {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted #f0f0f0;
+}
+
+.comentario-ejemplo:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.comentario-ejemplo .comment-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comentario-ejemplo p {
+  font-size: 0.85em;
+  color: #444;
+  margin: 0;
+}
+
+/* --- Párrafo de Contenido Principal Debajo de Todo --- */
+.recipe-description {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  line-height: 1.6;
+  color: #333;
+  font-size: 1em;
+}
+
+.pasos h2 {
+  font-size: 40px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border: 1px solid rgb(65, 21, 21);
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 30px 4px rgba(117, 34, 34, 0.514);
+  background-color: #f5cfcf;
+}
+
+/* --- Contenedor principal de todos los pasos --- */
+.pasos-iconos-p-img {
+  padding: 20px;
+}
+
+/* --- Estilo para cada paso individual --- */
+/* Alinea el icono y el bloque de contenido (párrafo + imágenes) lado a lado */
+.paso-individual {
+  display: flex;
+  align-items: flex-start; /* Alinea los elementos en la parte superior */
+  margin-bottom: 30px;
+  gap: 20px; /* Espacio entre el icono y el contenido */
+}
+
+/* --- Estilo para el icono del paso --- */
+.icono-pasos {
+  flex-shrink: 0; /* Mantiene el ancho fijo del icono */
+  width: 50px;
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #333;
+  padding-top: 15px;
+}
+
+.icono-pasos p {
+  margin: 0;
+  line-height: 1;
+}
+
+/* --- Estilo para el CONTENIDO GLOBAL del paso (párrafo Y las imágenes) --- */
+/* Este contenedor (.p-img) es el que apila el párrafo y las imágenes verticalmente */
+.p-img {
+  display: flex;
+  flex-direction: column; /* Apila .p-pasos y .img-pasos verticalmente */
+  flex-grow: 1; /* Permite que este contenedor ocupe el espacio horizontal restante */
+  gap: 15px; /* Espacio entre el párrafo y el bloque de imágenes */
+}
+
+/* --- Estilo para el párrafo del paso --- */
+.p-pasos {
+  line-height: 1.6;
+  color: #361c1c;
+  text-align: left; /* Asegura la alineación del texto del párrafo */
+}
+
+/* --- Estilo para el contenedor de imágenes de cada paso --- */
+/* Las imágenes dentro de este contenedor irán en fila y se alinearán a la izquierda */
+.img-pasos {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las imágenes salten a la siguiente línea si no hay espacio */
+  gap: 10px; /* Espacio entre cada imagen individual */
+  justify-content: flex-start; /* ¡Esto fuerza la alineación a la izquierda! */
+  align-items: flex-start; /* Alinea las imágenes por arriba si tienen diferentes alturas */
+}
+
+.img-pasos img {
+  width: 110px; /* Ancho fijo para un tamaño uniforme */
+  height: 110px; /* Altura fija para un tamaño uniforme (las hará cuadradas) */
+  border: 1px solid #000000;
+  border-radius: 3px;
+  object-fit: cover; /* Recorta la imagen para que llene el espacio sin distorsionarse */
+  cursor: pointer; /* ¡AÑADIDO! Cambia el cursor a un puntero */
+  transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out; /* ¡AÑADIDO! Transición suave para el efecto hover */
+}
+
+/* --- Efecto HOVER para las imágenes --- */
+.img-pasos img:hover {
+  transform: scale(
+    1.05
+  ); /* ¡AÑADIDO! Ligeramente más grande al pasar el cursor */
+  border-color: #007bff; /* ¡AÑADIDO! Cambia el color del borde */
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* ¡AÑADIDO! Añade una sombra sutil */
+}
